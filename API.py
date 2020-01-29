@@ -4,11 +4,12 @@ import tweepy
 import json
 
 """
-Initializes a TwitterAPI class that can acces the twitter api
+Initializes a TwitterAPI class that can acces the twitter api with the
+tweepy libaray
 
 USAGE:
-   test = Twitter('../auth/twitterAuth.json')
-   test.get_user_timeline('markwahlberg')
+test = Twitter('../auth/twitterAuth.json')
+test.get_user_timeline('markwahlberg')
 """
 class Twitter:
    consumer_secret = None
@@ -45,8 +46,8 @@ class Twitter:
 Initializes a GoogleAPI class that can acces the google api
 
 USAGE:
-   google = Google('../auth/key.json')
-   google.get_image_description('gs://cloud-samples-data/vision/using_curl/shanghai.jpeg')
+google = Google('../auth/key.json')
+google.get_image_description('gs://cloud-samples-data/vision/using_curl/shanghai.jpeg')
 """
 class Google:
    client = None
