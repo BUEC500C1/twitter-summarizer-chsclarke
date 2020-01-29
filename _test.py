@@ -1,8 +1,7 @@
 import pytest
-import twitterAPI
-import googleAPI
+import API
 
-#test imports
+#test imports for API's
 def test_google_vision_API():
 	try:
 		from google.cloud import vision
@@ -18,6 +17,17 @@ def test_twitter_API():
 
 	except:
 		assert 1 == 0
+
+
+#test API access classes
+def test_google_api():
+	google = API.Google('../auth/key.json')
+	assert google.get_image_description('gs://cloud-samples-data/vision/using_curl/shanghai.jpeg') != None
+
+def test_twitter_api():
+	test = API.Twitter('../auth/twitterAuth.json')
+	assert test.get_user_timeline('markwahlberg') != None
+
 
 
  
