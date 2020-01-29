@@ -25,8 +25,8 @@ def test_google_api():
 	assert google.get_image_description('gs://cloud-samples-data/vision/using_curl/shanghai.jpeg') != None
 
 def test_twitter_api():
-	test = API.Twitter('../auth/twitterAuth.json')
-	assert test.get_user_timeline('markwahlberg') != None
+	twitter = API.Twitter('../auth/twitterAuth.json')
+	assert twitter.get_user_timeline('markwahlberg') != None
 
 
 
