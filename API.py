@@ -16,6 +16,7 @@ class Twitter:
    access_token = None
    access_token_secret = None
    api = None
+   latest_status = None
 
    def __init__(self, authKey):
       with open(authKey) as json_file:
@@ -32,20 +33,16 @@ class Twitter:
       auth.set_access_token(self.access_token, self.access_token_secret)
 
       self.api = tweepy.API(auth)
-
-   def get_user_timeline(self, id, count):
-      tweets = []
-      # Pulling tweets from given user
-      for pages in self.api.user_timeline(id=id, count=count):
-         tweets.append(pages.text)
-
-      return tweets
    
-   def get_user_timeline_all_data(self, id, count):
-      return self.api.user_timeline(id=id, count=count)
+   def get_user_timeline(self, id, count):
+      self.status = self.api.user_timeline(id=id, count=count)
+      return self.status
+
+   def getImage(self, status):
+      return status._json["entities"]["media"][0]["media_url_https"]
 
 """
-Initializes a GoogleAPI class taht can acces the google api
+Initializes a GoogleAPI class that can acces the google api
 
 USAGE:
    google = Google('../auth/key.json')
