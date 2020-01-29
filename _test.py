@@ -29,7 +29,7 @@ test API access classes - can only be done locally as auth keys are not pushed t
 
 # def test_twitter_api():
 # 	twitter = API.Twitter('../auth/twitterAuth.json')
-# 	assert twitter.get_user_timeline('markwahlberg') != None
+# 	assert twitter.get_user_timeline('markwahlberg', 1) != None
 
 
 

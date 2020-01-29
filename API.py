@@ -33,14 +33,16 @@ class Twitter:
 
       self.api = tweepy.API(auth)
 
-   def get_user_timeline(self, id):
+   def get_user_timeline(self, id, count):
       tweets = []
       # Pulling tweets from given user
-      for pages in self.api.user_timeline(id=id, count=10):
+      for pages in self.api.user_timeline(id=id, count=count):
          tweets.append(pages.text)
 
       return tweets
-
+   
+   def get_user_timeline_all_data(self, id, count):
+      return self.api.user_timeline(id=id, count=count)
 
 """
 Initializes a GoogleAPI class taht can acces the google api
