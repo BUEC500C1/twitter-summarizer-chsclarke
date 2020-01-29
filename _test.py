@@ -1,7 +1,7 @@
 import pytest
 import API
 
-#test imports for API's
+"""test imports for API's"""
 def test_google_vision_API():
 	try:
 		from google.cloud import vision
@@ -19,14 +19,17 @@ def test_twitter_API():
 		assert 1 == 0
 
 
-#test API access classes
-def test_google_api():
-	google = API.Google('../auth/key.json')
-	assert google.get_image_description('gs://cloud-samples-data/vision/using_curl/shanghai.jpeg') != None
+"""
+test API access classes - can only be done locally as auth keys are not pushed to git
 
-def test_twitter_api():
-	twitter = API.Twitter('../auth/twitterAuth.json')
-	assert twitter.get_user_timeline('markwahlberg') != None
+"""
+# def test_google_api():
+# 	google = API.Google('../auth/key.json')
+# 	assert google.get_image_description('gs://cloud-samples-data/vision/using_curl/shanghai.jpeg') != None
+
+# def test_twitter_api():
+# 	twitter = API.Twitter('../auth/twitterAuth.json')
+# 	assert twitter.get_user_timeline('markwahlberg') != None
 
 
 
