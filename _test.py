@@ -21,7 +21,6 @@ def test_twitter_API():
 
 """
 test API access classes - can only be done locally as auth keys are not pushed to git
-
 """
 # def test_google_api():
 # 	google = API.Google('../auth/key.json')
