@@ -1,10 +1,18 @@
-FROM python:3
+FROM ubuntu:16.04
 
-ADD API.py / 
-ADD endpoint.py /
+RUN apt-get update -y && \
+    apt-get install -y python3-pip python3-dev && \
+    pip3 install --upgrade pip
 
-RUN pip install -r requirements.txt
+# We copy just the requirements.txt first to leverage Docker cache
+COPY ./requirements.txt /app/requirements.txt
 
-RUN export FLASK_APP=endpoint.py
+WORKDIR /app
 
-CMD flask run
+RUN pip3 install -r requirements.txt
+
+COPY . /app
+
+ENTRYPOINT [ "python3" ]
+
+CMD [ "main.py" ]
