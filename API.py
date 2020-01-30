@@ -39,8 +39,11 @@ class Twitter:
       self.status = self.api.user_timeline(id=id, count=count)
       return self.status
 
-   def getImage(self, status):
+   def get_image(self, status):
       return status._json["entities"]["media"][0]["media_url_https"]
+
+   def get_user_profile(self, status):
+      return status._json["user"]
 
 """
 Initializes a GoogleAPI class that can acces the google api
@@ -64,8 +67,6 @@ class Google:
       self.image.source.image_uri = image_uri
       response = self.client.label_detection(image=self.image)
 
-      # print('Labels (and confidence score):')
-      # print('=' * 79)
       labels = []
       for label in response.label_annotations:
          labels.append((label.description, label.score*100))
