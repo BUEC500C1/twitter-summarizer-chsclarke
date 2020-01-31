@@ -12,13 +12,6 @@ test = Twitter('../auth/twitterAuth.json')
 test.get_user_timeline('markwahlberg')
 """
 class Twitter:
-   consumer_secret = None
-   consumer_key = None
-   access_token = None
-   access_token_secret = None
-   api = None
-   latest_status = None
-
    def __init__(self, authKey):
       with open(authKey) as json_file:
          data = json.load(json_file)
@@ -53,9 +46,6 @@ google = Google('../auth/key.json')
 google.get_image_description('gs://cloud-samples-data/vision/using_curl/shanghai.jpeg')
 """
 class Google:
-   client = None
-   image = None
-
    def __init__(self, authKey):
       os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = authKey
 

@@ -12,7 +12,7 @@ twitter = API.Twitter('auth/twitterAuth.json')
 @app.route('/get_tweet')
 def get_last_tweet():
     result = {}
-    apiCall = None
+    imgDescription = None
     status = None
 
     #if user provided a username
@@ -23,13 +23,13 @@ def get_last_tweet():
         #check if there is an image in tweet
         try:
             imgURL = twitter.get_image(status[0])
-            apiCall = google.get_image_description(imgURL)
-            result["img"] = [apiCall[0], apiCall[1], apiCall[2]]
+            imgDescription = google.get_image_description(imgURL)
+            result["img"] = [imgDescription[0], imgDescription[1], imgDescription[2]] if len(imgDescription) > 3 else "NA"
         except:
-            apiCall = False
+            imgDescription = False
         
         #wait for api data to return
-        while (status is None or apiCall is None):
+        while (status is None or imgDescription is None):
             time.sleep(.1)
 
         result["tweet"] = status[0].text
@@ -66,14 +66,21 @@ def get_user_profile():
         result["location"] = profile["location"]
         result["name"] = profile["name"]
         result["screen_name"] = profile["screen_name"]
-        result["img"] = [imgDescription[0], imgDescription[1], imgDescription[2]]
-
+        result["img"] = [imgDescription[0], imgDescription[1], imgDescription[2]] if len(imgDescription) > 3 else "NA"
         return result
     else:
         return "{\"ERROR\" : \"you must enter a username\"}"
 
 
+"""handling 404 error"""
+@app.errorhandler(404) 
+def not_found(e): 
+    return "{\"ERROR\" : \"404\"}"
 
+"""handling 500 error"""
+@app.errorhandler(500) 
+def internal_error(e): 
+    return "{\"ERROR\" : \"500\"}"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
