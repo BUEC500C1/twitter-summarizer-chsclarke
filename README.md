@@ -21,7 +21,7 @@ Expose image to port 80:
 Done!
 
 
-## If your image breaks
+### If your image breaks
 Delete all images and containers in the case of an error:  
 `docker rm -vf $(docker ps -a -q);docker rmi -f $(docker images -a -q)`
 
