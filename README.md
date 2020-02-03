@@ -11,7 +11,7 @@ none! the app is containerized so there is no need
 
 ### Enable [google](https://cloud.google.com/vision/docs/before-you-begin) and [twitter](https://developer.twitter.com/en/docs/basics/getting-started) API's
 
-Once you have your API keys, add them to the [auth](https://github.com/BUEC500C1/twitter-summarizer-chsclarke/auth) folder. Be sure to remove `[template]` from the file names.
+Once you have your API keys, add them to the [auth](https://github.com/BUEC500C1/twitter-summarizer-chsclarke/tree/master/auth) folder. Be sure to remove `[template]` from the file names.
 
 ### Build Docker image locally
 
