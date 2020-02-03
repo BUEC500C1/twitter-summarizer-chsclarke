@@ -9,8 +9,11 @@ none! the app is containerized so there is no need
 
 ## Installation
 
-### Build Docker image locally
+### Enable [google](https://cloud.google.com/vision/docs/before-you-begin) and [twitter](https://developer.twitter.com/en/docs/basics/getting-started) API's
 
+Once you have your API keys, add them to the [auth](https://github.com/BUEC500C1/twitter-summarizer-chsclarke/auth) folder. Be sure to remove `[template]` from the file names.
+
+### Build Docker image locally
 
 Build image from Dockerfile:  
 `docker build -t chsclarke11/python-endpoint .`
