@@ -2,3 +2,4 @@ google-cloud-vision
 tweepy
 pytest
 Flask
+requests

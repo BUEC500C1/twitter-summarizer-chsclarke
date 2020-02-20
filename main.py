@@ -24,7 +24,7 @@ def get_last_tweet():
         try:
             imgURL = twitter.get_image(status[0])
             imgDescription = google.get_image_description(imgURL)
-            result["img"] = [imgDescription[0], imgDescription[1], imgDescription[2]] if len(imgDescription) > 3 else "NA"
+            result["img"] = {"url" : imgURL, "tags" : [imgDescription[0], imgDescription[1], imgDescription[2]] if len(imgDescription) > 3 else "NA"}
         except:
             imgDescription = False
         
@@ -32,7 +32,7 @@ def get_last_tweet():
         while (status is None or imgDescription is None):
             time.sleep(.1)
 
-        result["tweet"] = status[0].text
+        result["tweet"] = status[0].text if status[0].text else "NA"
 
         return result
     else:
@@ -58,15 +58,15 @@ def get_user_profile():
         while (status is None or imgDescription is None):
             time.sleep(.1)
 
-        result["created_at"] = profile["created_at"]
-        result["description"] = profile["description"]
-        result["urls"] = profile["entities"]["url"]["urls"]
-        result["followers_count"] = profile["followers_count"]
-        result["id"] = profile["id"]
-        result["location"] = profile["location"]
-        result["name"] = profile["name"]
-        result["screen_name"] = profile["screen_name"]
-        result["img"] = [imgDescription[0], imgDescription[1], imgDescription[2]] if len(imgDescription) > 3 else "NA"
+        result["created_at"] = profile["created_at"] if "created_at" in profile else "NA"
+        result["description"] = profile["description"] if "description" in profile else "NA"
+        result["urls"] = profile["entities"]["url"]["urls"] if "url" in profile["entities"] and "urls" in profile["entities"]["url"] else "NA"
+        result["followers_count"] = profile["followers_count"] if "followers_count" in profile else "NA"
+        result["id"] = profile["id"] if "id" in profile else "NA"
+        result["location"] = profile["location"] if "location" in profile else "NA"
+        result["name"] = profile["name"] if "name" in profile else "NA"
+        result["screen_name"] = profile["screen_name"] if "screen_name" in profile else "NA"
+        result["img"] = {"url" : profile["profile_image_url_https"], "tags" : [imgDescription[0], imgDescription[1], imgDescription[2]] if len(imgDescription) > 3 else "NA"}
         return result
     else:
         return "{\"ERROR\" : \"you must enter a username\"}"
@@ -78,7 +78,7 @@ def not_found(e):
     return "{\"ERROR\" : \"404\"}"
 
 """handling 500 error"""
-@app.errorhandler(500) 
+@app.errorhandler(500)
 def internal_error(e): 
     return "{\"ERROR\" : \"500\"}"
 
